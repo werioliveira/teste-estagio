@@ -2,7 +2,7 @@ const Person = require('../models/Person')
 
 
 module.exports={
-    async getAll(req,res){
+    async getAllPerson(req,res){
         try {
             const results = await Person.allPerson()
             return res.json(results[0])
@@ -20,7 +20,7 @@ module.exports={
         }
 
     },
-    async post(req,res){
+    async createPerson(req,res){
         try {
             const results = await Person.createPerson(req.body)
             return res.json(results)
@@ -38,18 +38,18 @@ module.exports={
         }
 
     },
-    async update(req,res){
+    async updatePerson(req,res){
         try {
             await Person.updatePerson(req.body, req.params.id)
             return res.json({
-                response: `User ${req.params.id} updated!`
+                response: `Person ${req.params.id} updated!`
             });
         } catch (error) {
             return res.json(error) 
         }
 
     },
-    async listAddress(req,res){
+    async listPersonAddress(req,res){
         try {
             const results = await Person.findPersonAddress(req.params.id)
             const address = results[0]

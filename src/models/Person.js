@@ -15,8 +15,8 @@ module.exports={
         return db.promise().query(query, values);
     },
     async createAddress(address){
-        const query = 'INSERT INTO enderecos ( logradouro, cep, numero, cidade, userId) VALUES (?,?,?,?,?)'
-        const values = [address.logradouro, address.cep, address.numero, address.cidade, address.userId]
+        const query = 'INSERT INTO enderecos ( logradouro, cep, numero, cidade, pessoaId) VALUES (?,?,?,?,?)'
+        const values = [address.logradouro, address.cep, address.numero, address.cidade, address.pessoaId]
         return db.promise().query(query, values);
     },
     updatePerson(person, person_id) {
@@ -31,7 +31,7 @@ module.exports={
         return db.promise().query(`SELECT * FROM pessoas WHERE id = ${person_id}`);
     },
     findPersonAddress(person_id) {
-        return db.promise().query(`SELECT * FROM enderecos WHERE userId = ${person_id}`);
+        return db.promise().query(`SELECT * FROM enderecos WHERE pessoaId = ${person_id}`);
     },
     addDefaultAddress(data, person_id){
         return db.promise().query(`UPDATE pessoas SET defaultAddress = ${data.defaultAddress} WHERE id = ${person_id}`)
